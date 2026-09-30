@@ -1,123 +1,208 @@
-# EcoPulse AI — Real-Time Sustainability & Resource Anomaly Assistant
+<p align="center">
+  <img src="logo.svg" width="200px" align="center" alt="Zod logo" />
+  <h1 align="center">Zod</h1>
+  <p align="center">
+    TypeScript-first schema validation with static type inference
+    <br/>
+    by <a href="https://x.com/colinhacks">@colinhacks</a>
+  </p>
+</p>
+<br/>
 
-> **Enterprise-grade web application** centralizing real-time energy, water, and waste tracking for urban centers and commercial facilities. Powered by **Google Gemini 2.5 Pro**, **Supabase PostgreSQL (with RLS)**, **Express REST API**, and a modern **React + Tailwind CSS** frontend.
+<p align="center">
+<a href="https://github.com/colinhacks/zod/actions?query=branch%3Amaster"><img src="https://github.com/colinhacks/zod/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Zod CI status" /></a>
+<a href="https://opensource.org/licenses/MIT" rel="nofollow"><img src="https://img.shields.io/github/license/colinhacks/zod" alt="License"></a>
+<a href="https://www.npmjs.com/package/zod" rel="nofollow"><img src="https://img.shields.io/npm/dw/zod.svg" alt="npm"></a>
+<a href="https://discord.gg/KaSRdyX2vc" rel="nofollow"><img src="https://img.shields.io/discord/893487829802418277?label=Discord&logo=discord&logoColor=white" alt="discord server"></a>
+<a href="https://github.com/colinhacks/zod" rel="nofollow"><img src="https://img.shields.io/github/stars/colinhacks/zod" alt="stars"></a>
+</p>
 
----
+<div align="center">
+  <a href="https://zod.dev/api">Docs</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://discord.gg/RcG33DQJdf">Discord</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://twitter.com/colinhacks">𝕏</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://bsky.app/profile/zod.dev">Bluesky</a>
+  <br />
+</div>
 
-## 🌟 Key Highlights & Features
+<br/>
+<br/>
 
-1. **High-Converting Public Landing Page (`/`)**:
-   - Hero section with live telemetry active badge, value proposition, and quick action CTAs.
-   - **Interactive Savings & Carbon Calculator**: Slide facility square footage (10,000–500,000+ sq ft) and power tariffs to compute instant annual ROI ($/yr), CO2 abated (Tons), water saved (kL), payback period, and potential EcoPulse rating.
-   - **Tri-Domain Feature Showcase**: Correlated tracking for Energy/HVAC, Water/Plumbing, and Solid Waste.
-   - Social proof endorsements from enterprise facility managers, REIT directors, and VP of Sustainability.
-   - Transparent pricing tiers (Starter, Commercial Portfolio, Urban Municipalities).
+<h2 align="center">Featured sponsor: Jazz</h2>
 
-2. **Authentication Flow (`/auth/login` & `/auth/signup`)**:
-   - Supabase Auth integration with email/password authentication.
-   - **1-Click Instant Demo Login**: Immediately enter the live facility command center without waiting for credentials.
+<div align="center">
+  <a href="https://jazz.tools/?utm_source=zod">
+    <picture width="85%" >
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/garden-co/jazz/938f6767e46cdfded60e50d99bf3b533f4809c68/homepage/homepage/public/Zod%20sponsor%20message.png">
+      <img alt="jazz logo" src="https://raw.githubusercontent.com/garden-co/jazz/938f6767e46cdfded60e50d99bf3b533f4809c68/homepage/homepage/public/Zod%20sponsor%20message.png" width="85%">
+    </picture>
+  </a>
+  <br/>
+  <p><sub>Learn more about <a target="_blank" rel="noopener noreferrer" href="mailto:sponsorship@colinhacks.com">featured sponsorships</a></sub></p>
+</div>
 
-3. **Multi-Facility Onboarding Wizard (`/onboarding`)**:
-   - Step 1: Building dimensions, square footage, industry type, and operating hours.
-   - Step 2: Target reduction goals (Peak Demand, Leak Prevention, Recycling Diversion, Net Zero) & submeter interfaces.
-   - Step 3: Baseline telemetry calibration and automatic launch of initial Gemini audit.
+<br/>
+<br/>
+<br/>
 
-4. **Central Sustainability Command Center (`/dashboard`)**:
-   - **Dynamic EcoPulse Efficiency Gauge**: Circular 0–100 indicator with status color coding (Optimal, Warning, Critical).
-   - Real-time Metric Cards with trends for Active Power (kWh), Water (Liters), Waste Compaction (kg), and Carbon Offset (Tons CO2e).
-   - Recharts time-series visualizer with area/bar view toggles and simulated anomaly injection.
-   - Prioritized AI action feed with step-by-step remediation playbooks.
+### [Read the docs →](https://zod.dev/api)
 
-5. **Resource Telemetry Explorer (`/telemetry`)**:
-   - Continuous submeter stream inspection across domains (`energy_hvac`, `water_plumbing`, `waste_management`).
-   - Time range filters (Last 24h, 3d, 7d, 30d).
-   - One-click **Export CSV** for compliance archives.
-   - Anomaly spike simulator to test real-time AI threshold detection.
+<br/>
+<br/>
 
-6. **Prioritized Action Plan (`/action-plan`)**:
-   - Remediation tasks categorized by urgency (`CRITICAL`, `HIGH`, `MEDIUM`, `LOW`).
-   - Slide-over `RemediationModal` detailing exact engineering procedures and setpoint changes.
-   - **Dynamic Score Recalculation**: Resolving items immediately lifts the facility's EcoPulse rating and recalculates ESG metrics in real-time.
+## What is Zod?
 
-7. **Executive Sustainability Report (`/reports`)**:
-   - Audit-ready executive documentation aligned with **ISO 50001** and **GHG Protocol Corporate Scope 1 & 2**.
-   - Clean printable layout with `@media print` formatting (Save as PDF).
+Zod is a TypeScript-first validation library. Define a schema and parse some data with it. You'll get back a strongly typed, validated result.
 
----
+```ts
+import * as z from "zod/v4";
 
-## 🛠️ Technology Stack
+const User = z.object({
+  name: z.string(),
+});
 
-| Layer | Technologies |
-|---|---|
-| **Frontend** | React 18 (Vite), Tailwind CSS, Framer Motion, Lucide React, Recharts, Canvas Confetti |
-| **Backend** | Node.js, Express.js REST API, Zod schema validation, CORS |
-| **AI Engine** | `@google/genai` SDK using `gemini-2.5-pro` with structured JSON schema (`responseSchema`) & resilient heuristics fallback |
-| **Database & Auth** | Supabase PostgreSQL with Row Level Security (RLS) & Supabase Client (`@supabase/supabase-js`) |
+// some untrusted data...
+const input = {
+  /* stuff */
+};
 
----
+// the parsed result is validated and type safe!
+const data = User.parse(input);
 
-## 🚀 Quick Start Guide
-
-### 1. Prerequisites
-- Node.js (v18+) & npm
-
-### 2. Running the Application
-The workspace is pre-configured with active dev servers:
-
-```bash
-# Terminal 1: Start Backend Server (Runs on port 5001)
-cd server
-npm start
-
-# Terminal 2: Start Frontend Client (Runs on port 3000)
-cd client
-npm run dev
+// so you can use it with confidence :)
+console.log(data.name);
 ```
 
-Visit the application at **[http://localhost:3000/](http://localhost:3000/)**
+<br/>
 
----
+## Features
 
-## 🗄️ Database Provisioning (Supabase SQL)
+- Zero external dependencies
+- Works in Node.js and all modern browsers
+- Tiny: `2kb` core bundle (gzipped)
+- Immutable API: methods return a new instance
+- Concise interface
+- Works with TypeScript and plain JS
+- Built-in JSON Schema conversion
+- Extensive ecosystem
 
-To link your external Supabase project, execute `server/db/schema.sql` inside your **Supabase SQL Editor**:
+<br/>
 
-```sql
--- Creates profiles, telemetry, assessments, and action_items tables
--- Configures Row Level Security (RLS) policies for multi-tenant isolation
-\i server/db/schema.sql
+## Installation
+
+```sh
+npm install zod
 ```
 
-Then add your credentials to `server/.env` and `client/.env`:
-```env
-SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_PUBLISHABLE_KEY=your_anon_key
-SUPABASE_SECRET_KEY=your_service_role_key
-GEMINI_API_KEY=your_gemini_api_key_here
+<br/>
+
+## Basic usage
+
+Before you can do anything else, you need to define a schema. For the purposes of this guide, we'll use a simple object schema.
+
+```ts
+import * as z from "zod/v4";
+
+const Player = z.object({
+  username: z.string(),
+  xp: z.number(),
+});
 ```
 
-*(Note: EcoPulse AI includes an automated resilient store and demo facility that works right out of the box even before remote keys are set up!)*
+### Parsing data
 
----
+Given any Zod schema, use `.parse` to validate an input. If it's valid, Zod returns a strongly-typed _deep clone_ of the input.
 
-## 📡 REST API Endpoints
+```ts
+Player.parse({ username: "billie", xp: 100 });
+// => returns { username: "billie", xp: 100 }
+```
 
-- `GET  /api/health` — Service health check & connection status.
-- `POST /api/onboarding` — Registers facility metadata and initial baseline telemetry.
-- `GET  /api/onboarding/profile` — Retrieves active facility profile.
-- `POST /api/telemetry/batch` — Batch ingest submeter readings (Zod validated).
-- `GET  /api/telemetry` — Retrieve historical telemetry series with filters.
-- `POST /api/telemetry/simulate-spike` — Injects anomaly spike for live demonstration.
-- `POST /api/assessment/generate` — Triggers server-side Gemini 2.5 Pro sustainability audit.
-- `GET  /api/assessment/latest` — Retrieves current EcoPulse score and active recommendations.
-- `PATCH /api/action-items/:id/status` — Updates item status (`PENDING` -> `RESOLVED`) & dynamically recalculates facility score.
-- `GET  /api/reports/sustainability` — Summarizes financial ROI and GHG Scope 1/2 carbon abatement.
+**Note** — If your schema uses certain asynchronous APIs like `async` [refinements](#refine) or [transforms](#transform), you'll need to use the `.parseAsync()` method instead.
 
----
+```ts
+const schema = z.string().refine(async (val) => val.length <= 8);
 
-## 🧪 Verified Automated Test Results
+await schema.parseAsync("hello");
+// => "hello"
+```
 
-- Backend health: `online` (Port 5001)
-- Frontend Vite server: `ready in 71ms` (Port 3000)
-- End-to-end audit cycle: Score dynamically updated `71` ➔ `83` upon resolving critical chiller anomaly.
-- Total realized savings: `$35,700/yr`
+### Handling errors
+
+When validation fails, the `.parse()` method will throw a `ZodError` instance with granular information about the validation issues.
+
+```ts
+try {
+  Player.parse({ username: 42, xp: "100" });
+} catch (err) {
+  if (err instanceof z.ZodError) {
+    err.issues;
+    /* [
+      {
+        expected: 'string',
+        code: 'invalid_type',
+        path: [ 'username' ],
+        message: 'Invalid input: expected string'
+      },
+      {
+        expected: 'number',
+        code: 'invalid_type',
+        path: [ 'xp' ],
+        message: 'Invalid input: expected number'
+      }
+    ] */
+  }
+}
+```
+
+To avoid a `try/catch` block, you can use the `.safeParse()` method to get back a plain result object containing either the successfully parsed data or a `ZodError`. The result type is a [discriminated union](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions), so you can handle both cases conveniently.
+
+```ts
+const result = Player.safeParse({ username: 42, xp: "100" });
+if (!result.success) {
+  result.error; // ZodError instance
+} else {
+  result.data; // { username: string; xp: number }
+}
+```
+
+**Note** — If your schema uses certain asynchronous APIs like `async` [refinements](#refine) or [transforms](#transform), you'll need to use the `.safeParseAsync()` method instead.
+
+```ts
+const schema = z.string().refine(async (val) => val.length <= 8);
+
+await schema.safeParseAsync("hello");
+// => { success: true; data: "hello" }
+```
+
+### Inferring types
+
+Zod infers a static type from your schema definitions. You can extract this type with the `z.infer<>` utility and use it however you like.
+
+```ts
+const Player = z.object({
+  username: z.string(),
+  xp: z.number(),
+});
+
+// extract the inferred type
+type Player = z.infer<typeof Player>;
+
+// use it in your code
+const player: Player = { username: "billie", xp: 100 };
+```
+
+In some cases, the input & output types of a schema can diverge. For instance, the `.transform()` API can convert the input from one type to another. In these cases, you can extract the input and output types independently:
+
+```ts
+const mySchema = z.string().transform((val) => val.length);
+
+type MySchemaIn = z.input<typeof mySchema>;
+// => string
+
+type MySchemaOut = z.output<typeof mySchema>; // equivalent to z.infer<typeof mySchema>
+// number
+```
